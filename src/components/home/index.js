@@ -1,30 +1,20 @@
 import React from 'react'
 import { Flex, Box } from '@grid'
-import withPage from '@lib/page/withPage'
-import styled from 'styled-components'
 
-const HomePageWrapper = styled.div`
-  background: #eee;
-  display: block;
-  width: 100%;
-  min-height: 300px;
-`
+import withPage from '@lib/page/withPage'
+import HeaderText from './HeaderText'
+import DailyUpdate from './DailyUpdate'
 
 function HomePage() {
   return (
-    <HomePageWrapper>
-      <Flex flexWrap="wrap" css={{ padding: '60px 120px' }}>
-        <Box width={1}>
-          <h1
-            css={{
-              fontSize: '2em',
-              padding: '50px 10px 10px',
-            }}>
-            Home Page
-          </h1>
-        </Box>
-      </Flex>
-    </HomePageWrapper>
+    <Flex flexWrap="wrap" mx={'-10px'}>
+      <Box px={'10px'} width={[ 1, 1, 1/3, 1/4 ]} mb={['15px', '15px', 0, 0]}>
+        <HeaderText></HeaderText>
+      </Box>
+      <Box px={'10px'} width={[ 1, 1, 2/3, 3/4 ]}>
+        <DailyUpdate></DailyUpdate>
+      </Box>
+    </Flex>
   )
 }
 

@@ -2,8 +2,9 @@ import React, { Fragment } from 'react'
 import { useUA } from '@lib/userAgent'
 
 export const breakpoints = {
+  sm: '32em', // 512px
   md: '48em', // 768px
-  lg: '60em', // 960px
+  lg: '64em', // 1024px
   xl: '80em', // 1280px
 }
 
