@@ -12,16 +12,12 @@ export default function covid19(req, res) {
     .on('error', function(err) {
       console.error(err)
     })
-    // .on('header', function(columns) {
-    //   console.log(columns)
-    // })
     .on('data', row => {
       results.push(row)
     })
     .on('end', () => {
       res.status(200).json(JSON.stringify(results, null, 2))
     })
-  // .on('column', function(key, value) {
-  //   console.log('#' + key + ' = ' + value)
-  // })
 }
+
+// how to cache , stream for one time a day ?
