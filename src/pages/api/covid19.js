@@ -25,13 +25,12 @@ async function extract(urlpath) {
     // console.log('value set', [province, country, lat, long, ...dates]) // ได้ country ซ้ำมาด้วย
 
     countList[country] = countList[country] || {} // ทุกๆการ วนทีละ country  จับยัดใส่ เป็น key ของ array countList
-    // country ไม่ซ้ำ เพราะที่ซ้ำจะโดนรวม
-    // console.log('countList', countList) // ได้ countList ที่มี key เป็น ประเทศทั้งหมด
+    // country ที่ซ้ำจะโดนรวม
 
     normalDates.forEach((date, val) => {
       // loop array normalDates แยก key, value ของ date นั้นๆ
-      countList[country][date] = countList[country][date] || 0 // สร้าง key[date] ใน countList[ประเทศนั้นๆ]
-      countList[country][date] += +dates[val] // จับยัดใส่ array countList[ประเทศนั้นๆ] ทุกเมืองของประเทศนั้นๆ
+      countList[country][date] = countList[country][date] || 0 // สร้าง key[date] ใน countList[ประเทศนั้น]
+      countList[country][date] += +dates[val] // รวม dates[val] ทุกเมืองของประเทศนั้น
     })
   })
 
@@ -62,3 +61,5 @@ export default async function covid19(req, res) {
 
   res.status(200).json(JSON.stringify(results, null, 2))
 }
+
+// Guideline from : https://github.com/pomber/covid19
