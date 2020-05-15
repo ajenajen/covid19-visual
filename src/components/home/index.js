@@ -12,10 +12,7 @@ import Table from './Table'
 
 function HomePage() {
   return (
-    <Fetch
-      service={() =>
-        CaseService.getCaseDailyByCountry({ country: 'Thailand' })
-      }>
+    <Fetch service={() => CaseService.getUpdateCase()}>
       {({ data }) => <Table data={data} />}
     </Fetch>
     // <Fetch
