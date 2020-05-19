@@ -9,7 +9,7 @@ import {
 } from 'recharts'
 import colors from '@features/_ui/config/colors'
 
-import * as ConfirmCaseService from '@features/confirmcase/services'
+import * as ConfirmCaseService from '@features/case/services'
 import { Fetch } from '@lib/api'
 
 Chart.defaultProps = {

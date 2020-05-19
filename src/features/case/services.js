@@ -79,20 +79,50 @@ export function getTotalCaseByCountry({ country }) {
 export function getUpdateCase() {
   return API.getCaseData().then(function(response) {
     const countries = Object.keys(response)
-    const aCountry = response[countries[0]]
-    const { date } = aCountry[aCountry.length - 1]
-    const { prevDate } = aCountry[aCountry.length - 2]
 
-    const rows = countries.map(country => {
-      const { confirmed, deaths, recovered } = response[country].find(
-        item => item.date === date,
-      )
-      return { country, confirmed, deaths, recovered }
-    })
-    console.log('loggg', rows)
+    const rows = countries
+      .map(country => {
+        const today = response[country][response[country].length - 1]
+        const yesterday = response[country][response[country].length - 2]
 
-    return { date, rows }
+        const data = {
+          ...today,
+          newconfirmed: today.confirmed - yesterday.confirmed,
+          newrecovered: today.recovered - yesterday.recovered,
+          newdeaths: today.deaths - yesterday.deaths,
+        }
+        return { country, data }
+      })
+      .reduce((prev, cur) => {
+        return {
+          ...prev,
+          [cur.country]: cur.data,
+        }
+      }, {})
+
+    // console.log('rows', rows)
+
+    return rows
   })
 }
 
-export function getUpdateCaseByCountry({ country }) {}
+export function getUpdateCaseByCountry({ country }) {
+  return API.getCaseData({ country }).then(function(response) {
+    const rows = [country].map(country => {
+      // console.log('item', response[country])
+
+      const today = response[country][response[country].length - 1]
+      const yesterday = response[country][response[country].length - 2]
+
+      const data = {
+        ...today,
+        newconfirmed: today.confirmed - yesterday.confirmed,
+        newrecovered: today.recovered - yesterday.recovered,
+        newdeaths: today.deaths - yesterday.deaths,
+      }
+      return data
+    })
+
+    return rows
+  })
+}

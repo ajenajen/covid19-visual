@@ -10,7 +10,13 @@ const urlDeaths =
 
 async function extract(urlpath) {
   const getData = await axios.get(urlpath)
-  const [headers, ...rows] = await parse(getData.data) // แยก key : [rows] กับ value : rows
+  return getData.data
+}
+
+async function prepareData(url) {
+  const data = await extract(url)
+
+  const [headers, ...rows] = await parse(data) // แยก key : [rows] กับ value : rows
   const [province, country, lat, long, ...dates] = headers // เอา key มาแยก ,เปลี่ยน key name 4 ตัวแรก ที่เหลือต่อด้วย dates
   const countList = {}
 
@@ -30,7 +36,7 @@ async function extract(urlpath) {
     normalDates.forEach((date, val) => {
       // loop array normalDates แยก key, value ของ date นั้นๆ
       countList[country][date] = countList[country][date] || 0 // สร้าง key[date] ใน countList[ประเทศนั้น]
-      countList[country][date] += +dates[val] // รวม dates[val] ทุกเมืองของประเทศนั้น
+      countList[country][date] += +dates[val] // รวม array dates[val] ทุกเมืองของประเทศนั้น
     })
   })
 
@@ -39,9 +45,9 @@ async function extract(urlpath) {
 }
 
 export default async function covid19(req, res) {
-  const [confirmed, dates] = await extract(urlConfirmed)
-  const [recovered] = await extract(urlRecovered)
-  const [deaths] = await extract(urlDeaths)
+  const [confirmed, dates] = await prepareData(urlConfirmed)
+  const [recovered] = await prepareData(urlRecovered)
+  const [deaths] = await prepareData(urlDeaths)
 
   const countries = Object.keys(confirmed) // ex: [confirmed['Thailand']]
   const results = {}
