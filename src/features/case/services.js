@@ -22,10 +22,10 @@ export function getTotalCase() {
     const aCountry = response[countries[0]]
     const { date } = aCountry[aCountry.length - 1]
     const rows = countries.map(country => {
-      const { confirmed, deaths, recovered } = response[country].find(
-        item => item.date === date,
-      )
-      return { country, confirmed, deaths, recovered }
+      const { confirmed, hospitalized, deaths, recovered } = response[
+        country
+      ].find(item => item.date === date)
+      return { country, confirmed, hospitalized, deaths, recovered }
     })
 
     return { date, rows }
@@ -39,10 +39,10 @@ export function getTotalCaseByCountry({ country }) {
     const { date } = aCountry[aCountry.length - 1]
 
     const rows = data.map(country => {
-      const { confirmed, deaths, recovered } = response[country].find(
-        item => item.date === date,
-      )
-      return { country, confirmed, deaths, recovered }
+      const { confirmed, hospitalized, deaths, recovered } = response[
+        country
+      ].find(item => item.date === date)
+      return { country, confirmed, hospitalized, deaths, recovered }
     })
 
     return { date, rows }
@@ -61,6 +61,7 @@ export function getUpdateCase() {
         const data = {
           ...today,
           newconfirmed: today.confirmed - yesterday.confirmed,
+          newhospitalized: today.hospitalized - yesterday.hospitalized,
           newrecovered: today.recovered - yesterday.recovered,
           newdeaths: today.deaths - yesterday.deaths,
         }
@@ -87,6 +88,7 @@ export function getUpdateCaseByCountry({ country }) {
     const data = {
       ...today,
       newconfirmed: today.confirmed - yesterday.confirmed,
+      newhospitalized: today.hospitalized - yesterday.hospitalized,
       newrecovered: today.recovered - yesterday.recovered,
       newdeaths: today.deaths - yesterday.deaths,
     }

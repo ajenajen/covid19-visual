@@ -78,16 +78,16 @@ const baseStyles = css`
     box-shadow: 0 6px 0 0 rgba(0, 0, 0, 0.01), 0 15px 32px 0 rgba(0, 0, 0, 0.14);
     &-content {
       display: flex;
-      line-height: 1;
+      line-height: 1.2;
       align-items: stretch;
       h2,
       h4 {
         margin: 0;
       }
       h2 {
-        font-size: 2.35em;
+        font-size: 3.25em;
         span {
-          font-size: 1rem;
+          font-size: 1.5rem;
           padding-left: 6px;
         }
       }
@@ -99,7 +99,7 @@ const baseStyles = css`
       max-width: 65%;
       padding: 8px 5px 4px 10px;
       @media only screen and (min-width: 64em) {
-        padding: 8px 5px 4px 12px;
+        padding: 12px 5px 10px 12px;
       }
     }
     &-right {
@@ -187,6 +187,13 @@ const baseStyles = css`
       content: '^ เพิ่ม';
     }
   }
+  .box {
+    background: #10163a;
+    color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
   .table-responsive {
     display: block;
     width: 100%;
@@ -196,19 +203,19 @@ const baseStyles = css`
   .table {
     width: 100%;
     margin-bottom: 1rem;
-    color: #212529;
+    color: #c2c6dc;
     border-collapse: collapse;
     th,
     td {
       padding: 0.5rem 8px 0.375rem;
-      border-top: 1px solid #dee2e6;
-      font-size: 1.15em;
+      border-top: 1px solid #414561;
+      font-size: 1.2em;
       text-align: center;
     }
     thead {
       th {
         border-top: none;
-        font-size: 1.5em;
+        font-size: 1.375em;
       }
     }
   }

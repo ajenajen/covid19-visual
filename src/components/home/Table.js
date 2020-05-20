@@ -6,31 +6,24 @@ import { Fetch } from '@lib/api'
 
 export default function Table() {
   return (
-    <Fetch service={() => CaseService.getUpdateCase()}>
+    <Fetch
+      service={() => CaseService.getCaseByCountry({ country: 'Thailand' })}>
       {({ data }) => {
         // eslint-disable-next-line no-lone-blocks
         {
           return (
-            <Fragment my={'15px'}>
-              <h2
-                css={{
-                  fontSize: '2.8em',
-                  textAlign: 'center',
-                  paddingTop: '27px',
-                  paddingBottom: '20px',
-                }}>
-                World Update Case
-              </h2>
+            <Flex className="box" my={'15px'}>
               <table className="table" css={{ margin: '0' }}>
                 <thead
                   css={{
-                    background: 'linear-gradient(-20deg,#ffc107,#FF390E)',
+                    background:
+                      'linear-gradient(118deg,#7367f0,rgba(115,103,240,.7))',
                     color: '#fff',
                   }}>
                   <tr>
-                    <th css={{ width: '150px' }}>State</th>
+                    <th css={{ width: '150px' }}>Date</th>
                     <th css={{ width: '18%' }}>Confirmed</th>
-                    <th css={{ width: '18%' }}>Active</th>
+                    <th css={{ width: '18%' }}>Hospitalized</th>
                     <th css={{ width: '18%' }}>Recovered</th>
                     <th css={{ width: '18%' }}>Deaths</th>
                   </tr>
@@ -38,38 +31,47 @@ export default function Table() {
               </table>
               <div className="table-responsive" css={{ maxHeight: '300px' }}>
                 <table className="table" css={{ position: 'relative' }}>
-                  <tbody
-                    css={{
-                      background: '#fff',
-                    }}>
-                    {Object.keys(data).map((country, i) => (
-                      <tr key={i}>
-                        <td
-                          css={{
-                            textAlign: 'left !important',
-                            width: '150px',
-                          }}>
-                          {country}
-                        </td>
-                        <td css={{ width: '18%' }}>
-                          {data[country].confirmed}
-                        </td>
-                        <td css={{ width: '18%', color: '#FF390E' }}>
-                          {data[country].confirmed -
-                            data[country].recovered -
-                            data[country].deaths}
-                        </td>
-                        <td css={{ width: '18%' }}>
-                          {data[country].recovered}
-                        </td>
-                        <td css={{ width: '18%' }}>{data[country].deaths}</td>
-                      </tr>
-                      // console.log(data[country])
-                    ))}
+                  <tbody>
+                    {Object.keys(data)
+                      .reverse()
+                      .map((country, i) => (
+                        <tr key={i}>
+                          <td
+                            css={{
+                              textAlign: 'left !important',
+                              paddingLeft: '15px !important',
+                              width: '150px',
+                            }}>
+                            {data[country].date}
+                          </td>
+                          <td css={{ width: '18%' }}>
+                            {data[country].confirmed}{' '}
+                            {/* <span css={{ color: 'red' }}>
+                              ({data[country].newconfirmed})
+                            </span> */}
+                          </td>
+                          <td css={{ width: '18%', color: '#ffc107' }}>
+                            {data[country].hospitalized}
+                          </td>
+                          <td css={{ width: '18%' }}>
+                            {data[country].recovered}{' '}
+                            {/* <span css={{ color: 'green' }}>
+                              ({data[country].newrecovered})
+                            </span> */}
+                          </td>
+                          <td css={{ width: '18%' }}>
+                            {data[country].deaths}{' '}
+                            {/* <span css={{ color: 'red' }}>
+                              ({data[country].newdeaths})
+                            </span> */}
+                          </td>
+                        </tr>
+                        // console.log(data[country])
+                      ))}
                   </tbody>
                 </table>
               </div>
-            </Fragment>
+            </Flex>
           )
         }
       }}

@@ -11,27 +11,21 @@ export default function HeaderText() {
         borderRadius: '4px',
         backgroundColor: colors.background.transparent,
         [media('lg')]: {
-          padding: '1.725rem 0.5rem',
+          padding: '0.75rem 0.5rem',
         },
         [media('xl')]: {
-          padding: '1rem',
+          padding: '0.75rem 1rem',
         },
       }}>
       <h3
         css={{
-          fontSize: '2.25em',
-          [media('lg')]: {
-            fontSize: '1.75em',
-          },
-          [media('xl')]: {
-            fontSize: '2.8em',
-          },
+          fontSize: '1.5em',
         }}>
         <span
           css={{
             display: 'inline-block',
-            width: '30px',
-            height: '25px',
+            width: '20px',
+            height: '16px',
             marginRight: '10px',
             background:
               'url(/static/images/thai-flag.png) no-repeat center / cover',
@@ -41,9 +35,9 @@ export default function HeaderText() {
       </h3>
       <h1
         css={{
-          fontSize: '3.35em',
+          fontSize: '3em',
           [media('xl')]: {
-            fontSize: '4em',
+            fontSize: '3.125em',
           },
           color: '#bd212d',
         }}>
@@ -51,7 +45,7 @@ export default function HeaderText() {
       </h1>
       <h3
         css={{
-          fontSize: '2em',
+          fontSize: '1.25em',
         }}>
         VISUALISATION
       </h3>
