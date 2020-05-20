@@ -19,8 +19,8 @@ export default function CardStatus({ data, type }) {
     switch (type) {
       case 'confirmed':
         return { title: 'ผู้ติดเชื้อสะสม', cssClass: 'primary' }
-      // case 'Hospitalized':
-      //   return { title: 'กำลังรักษา', cssClass: 'warning' }
+      case 'hospitalized':
+        return { title: 'กำลังรักษา', cssClass: 'warning' }
       case 'recovered':
         return { title: 'หายแล้ว', cssClass: 'success' }
       case 'deaths':

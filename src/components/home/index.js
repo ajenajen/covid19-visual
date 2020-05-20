@@ -10,13 +10,13 @@ import Table from './Table'
 function HomePage() {
   return (
     <Flex flexWrap="wrap" mx={'-10px'}>
-      <Box px={'10px'} width={[1, 1, 1 / 3, 1 / 4]} mb={['15px', '15px', 0, 0]}>
+      <Box px={'5px'} width={[1, 1, 1, 1 / 5]} mb={['15px', '15px', '15px', 0]}>
         <HeaderText></HeaderText>
       </Box>
-      <Box px={'10px'} width={[1, 1, 2 / 3, 3 / 4]}>
+      <Box px={'5px'} width={[1, 1, 1 / 2, 1.75 / 5]}>
         <DailyUpdate />
       </Box>
-      <Box px={'10px'} width={1}>
+      <Box px={'5px'} width={[1, 1, 1 / 2, 2.25 / 5]}>
         <Table />
         {/* <Chart type={'confirmed'}></Chart> */}
       </Box>

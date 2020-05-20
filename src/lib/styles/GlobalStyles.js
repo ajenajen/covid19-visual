@@ -85,7 +85,7 @@ const baseStyles = css`
         margin: 0;
       }
       h2 {
-        font-size: 2.65em;
+        font-size: 2.35em;
         span {
           font-size: 1rem;
           padding-left: 6px;
@@ -97,9 +97,9 @@ const baseStyles = css`
     &-left {
       flex: 0 0 65%;
       max-width: 65%;
-      padding: 9px 5px 4px 10px;
+      padding: 8px 5px 4px 10px;
       @media only screen and (min-width: 64em) {
-        padding: 15px 5px 12px 12px;
+        padding: 8px 5px 4px 12px;
       }
     }
     &-right {
@@ -112,7 +112,7 @@ const baseStyles = css`
       border-radius: 0 4px 4px 0;
     }
     &-status {
-      padding: 15px 5px 10px;
+      padding: 10px 5px 6px;
       text-align: center;
       width: 100%;
       max-width: 60px;
@@ -185,6 +185,31 @@ const baseStyles = css`
     &.good .status-tag {
       background: ${colors.text.red};
       content: '^ เพิ่ม';
+    }
+  }
+  .table-responsive {
+    display: block;
+    width: 100%;
+    position: relative;
+    overflow-x: auto;
+  }
+  .table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    border-collapse: collapse;
+    th,
+    td {
+      padding: 0.5rem 8px 0.375rem;
+      border-top: 1px solid #dee2e6;
+      font-size: 1.15em;
+      text-align: center;
+    }
+    thead {
+      th {
+        border-top: none;
+        font-size: 1.5em;
+      }
     }
   }
 `

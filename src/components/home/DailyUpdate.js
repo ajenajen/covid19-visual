@@ -13,14 +13,14 @@ export default function DailyUpdate() {
       }>
       {({ data }) => {
         return (
-          <Flex flexWrap="wrap" justifyContent="flex-end" mx={'-7px'}>
-            <Box width={[1, 1, 1, 5 / 10]} px={'7px'} mb={'15px'}>
+          <Flex flexWrap="wrap" justifyContent="flex-end" mx={'-5px'}>
+            <Box width={[1, 1]} px={'5px'} mb={'10px'}>
               <CardStatus data={data} type={'confirmed'}></CardStatus>
             </Box>
-            <Box width={[1 / 2, 1 / 2, 1 / 2, 2.5 / 10]} px={'7px'} mb={'10px'}>
+            <Box width={[1, 1 / 2]} px={'5px'} mb={'5px'}>
               <CardStatus data={data} type={'recovered'}></CardStatus>
             </Box>
-            <Box width={[1 / 2, 1 / 2, 1 / 2, 2.5 / 10]} px={'7px'} mb={'10px'}>
+            <Box width={[1, 1 / 2]} px={'5px'} mb={'5px'}>
               <CardStatus data={data} type={'deaths'}></CardStatus>
             </Box>
           </Flex>
