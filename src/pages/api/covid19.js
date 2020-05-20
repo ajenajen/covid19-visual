@@ -59,6 +59,10 @@ export default async function covid19(req, res) {
       return {
         date,
         confirmed: confirmed[country][date],
+        hospitalized:
+          confirmed[country][date] -
+          deaths[country][date] -
+          recovered[country][date],
         deaths: deaths[country][date],
         recovered: recovered[country][date],
       }
