@@ -5,7 +5,7 @@ import { getFullUrlByRoute } from '@router/utils'
 
 import { AUTH_COOKIE_NAME } from '@features/_auth/constants'
 
-const defaultTimeout = 10000
+const defaultTimeout = 20000
 
 export function fetchAPI({
   apiUrl = process.env.API_URL,

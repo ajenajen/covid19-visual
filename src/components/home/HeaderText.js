@@ -6,7 +6,7 @@ export default function HeaderText() {
   return (
     <div
       css={{
-        padding: '1.875rem 0.5rem',
+        padding: '1rem 0.5rem',
         textAlign: 'center',
         borderRadius: '4px',
         backgroundColor: colors.background.transparent,

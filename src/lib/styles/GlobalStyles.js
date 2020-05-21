@@ -85,10 +85,19 @@ const baseStyles = css`
         margin: 0;
       }
       h2 {
-        font-size: 3.25em;
+        font-size: 2.2em;
         span {
-          font-size: 1.5rem;
+          font-size: 1rem;
           padding-left: 6px;
+        }
+        @media only screen and (min-width: 48em) {
+          font-size: 2.8em;
+        }
+        @media only screen and (min-width: 64em) {
+          font-size: 3.25em;
+          span {
+            font-size: 1.5rem;
+          }
         }
       }
     }
@@ -217,6 +226,24 @@ const baseStyles = css`
         border-top: none;
         font-size: 1.375em;
       }
+    }
+  }
+  .span-status {
+    margin-left: -10px;
+    padding-left: 10px;
+    position: relative;
+    &:before {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      content: '+';
+    }
+    &.red:before {
+      color: red;
+    }
+    &.green:before {
+      color: green;
     }
   }
 `

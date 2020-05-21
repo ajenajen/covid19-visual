@@ -45,25 +45,48 @@ export default function Table() {
                             {data[country].date}
                           </td>
                           <td css={{ width: '18%' }}>
-                            {data[country].confirmed}{' '}
-                            {/* <span css={{ color: 'red' }}>
-                              ({data[country].newconfirmed})
-                            </span> */}
+                            {data[country].confirmed}
+                            {data[country].newconfirmed > 0 ? (
+                              <span
+                                css={{
+                                  display: 'inline-block',
+                                  width: '50px',
+                                  fontsize: '0.8em',
+                                  color: 'red',
+                                }}>
+                                {' '}
+                                (+{data[country].newconfirmed})
+                              </span>
+                            ) : (
+                              <span
+                                css={{
+                                  display: 'inline-block',
+                                  paddingLeft: '54px',
+                                }}></span>
+                            )}
                           </td>
                           <td css={{ width: '18%', color: '#ffc107' }}>
                             {data[country].hospitalized}
                           </td>
                           <td css={{ width: '18%' }}>
-                            {data[country].recovered}{' '}
-                            {/* <span css={{ color: 'green' }}>
-                              ({data[country].newrecovered})
-                            </span> */}
+                            <span
+                              className={
+                                data[country].newrecovered > 0
+                                  ? 'span-status green'
+                                  : ''
+                              }>
+                              {data[country].recovered}
+                            </span>
                           </td>
                           <td css={{ width: '18%' }}>
-                            {data[country].deaths}{' '}
-                            {/* <span css={{ color: 'red' }}>
-                              ({data[country].newdeaths})
-                            </span> */}
+                            <span
+                              className={
+                                data[country].newdeaths > 0
+                                  ? 'span-status red'
+                                  : ''
+                              }>
+                              {data[country].deaths}
+                            </span>
                           </td>
                         </tr>
                         // console.log(data[country])
