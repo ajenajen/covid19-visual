@@ -54,10 +54,24 @@ export default async function covid19(req, res) {
 
   countries.forEach(country => {
     // console.log(country)
-    results[country] = dates.map(date => {
+    results[country] = dates.map((date, i) => {
       // console.log(date)
+
+      const Newconfirmed =
+        Object.values(confirmed[country])[i] -
+        Object.values(confirmed[country])[i - 1]
+      const Newdeaths =
+        Object.values(deaths[country])[i] -
+        Object.values(deaths[country])[i - 1]
+      const Newrecovered =
+        Object.values(recovered[country])[i] -
+        Object.values(recovered[country])[i - 1]
+
       return {
         date,
+        newconfirmed: Newconfirmed,
+        newdeaths: Newdeaths,
+        newrecovered: Newrecovered,
         confirmed: confirmed[country][date],
         hospitalized:
           confirmed[country][date] -
