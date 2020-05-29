@@ -25,7 +25,6 @@ async function prepareData(url) {
     const [month, day] = date.split('/')
     return `2020-${month}-${day}`
   })
-
   rows.forEach(([province, country, lat, long, ...dates]) => {
     // console.log('country', country) // ได้ forEach country ทั้งหมด , เอามาใช้แค่ country แต่แตกออกมาทั้งหมดเพื่อเอาลำดับ
     // console.log('value set', [province, country, lat, long, ...dates]) // ได้ country ซ้ำมาด้วย
@@ -33,7 +32,7 @@ async function prepareData(url) {
     countList[country] = countList[country] || {} // ทุกๆการ วนทีละ country  จับยัดใส่ เป็น key ของ array countList
     // country ที่ซ้ำจะโดนรวม
 
-    normalDates.forEach((date, val) => {
+    normalDates.map((date, val) => {
       // loop array normalDates แยก key, value ของ date นั้นๆ
       countList[country][date] = countList[country][date] || 0 // สร้าง key[date] ใน countList[ประเทศนั้น]
       countList[country][date] += +dates[val] // รวม array dates[val] ทุกเมืองของประเทศนั้น
@@ -52,26 +51,25 @@ export default async function covid19(req, res) {
   const countries = Object.keys(confirmed) // ex: [confirmed['Thailand']]
   const results = {}
 
-  countries.forEach(country => {
+  // console.time('api')
+  countries.map(country => {
     // console.log(country)
     results[country] = dates.map((date, i) => {
-      // console.log(date)
-
-      const Newconfirmed =
-        Object.values(confirmed[country])[i] -
-        Object.values(confirmed[country])[i - 1]
-      const Newdeaths =
-        Object.values(deaths[country])[i] -
-        Object.values(deaths[country])[i - 1]
-      const Newrecovered =
-        Object.values(recovered[country])[i] -
-        Object.values(recovered[country])[i - 1]
+      // const Newconfirmed =
+      //   Object.values(confirmed[country])[i] -
+      //   Object.values(confirmed[country])[i - 1]
+      // const Newdeaths =
+      //   Object.values(deaths[country])[i] -
+      //   Object.values(deaths[country])[i - 1]
+      // const Newrecovered =
+      //   Object.values(recovered[country])[i] -
+      //   Object.values(recovered[country])[i - 1]
 
       return {
         date,
-        newconfirmed: Newconfirmed,
-        newdeaths: Newdeaths,
-        newrecovered: Newrecovered,
+        // newconfirmed: Newconfirmed,
+        // newdeaths: Newdeaths,
+        // newrecovered: Newrecovered,
         confirmed: confirmed[country][date],
         hospitalized:
           confirmed[country][date] -
@@ -82,6 +80,7 @@ export default async function covid19(req, res) {
       }
     })
   })
+  // console.timeEnd('api')
 
   res.status(200).json(JSON.stringify(results, null, 2))
 }
