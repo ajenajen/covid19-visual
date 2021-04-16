@@ -1,11 +1,11 @@
 const axios = require('axios')
 const parse = require('csv-parse/lib/sync')
 
-const urlConfirmed =
+const urlconfirmed =
   'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv'
-const urlRecovered =
+const urlrecovered =
   'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv'
-const urlDeaths =
+const urldeaths =
   'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv'
 
 async function extract(urlpath) {
@@ -48,22 +48,30 @@ async function prepareData(url, label) {
   return [countList, normalDates]
 }
 
-// async function getUpdateData(url, label) {
-//   const result = await prepareData(url, label)
-// const result = data.reduce((prev, cur) => {
-//   return {}
-// }, {})
-//   console.log('result', data)
+// async function getUpdateData(dataLabel) {
+//   // const result = dataLabel.map(label => {
+//   //   console.log(label)
+//     // const [label] = await prepareData(`url${label}`, label)
+//     // const [preparedRecovered] = await prepareData(urlrecovered, 'recovered')
+//     // const [preparedDeaths] = await prepareData(urldeaths, 'deaths')
+
+//     // const preparedData = [preparedconfirmed, preparedrecovered, prepareddeaths]
+//     // const countries = Object.keys(preparedConfirmed)
+//   // })
+
 //   return result
 // }
 
 export default async function covid19(req, res) {
+  // const test = await getUpdateData(['confirmed', 'recovered', 'deaths'])
+  // console.log('result', test)
+
   const [preparedConfirmed, dates] = await prepareData(
-    urlConfirmed,
+    urlconfirmed,
     'confirmed',
   )
-  const [preparedRecovered] = await prepareData(urlRecovered, 'recovered')
-  const [preparedDeaths] = await prepareData(urlDeaths, 'deaths')
+  const [preparedRecovered] = await prepareData(urlrecovered, 'recovered')
+  const [preparedDeaths] = await prepareData(urldeaths, 'deaths')
 
   const preparedData = [preparedConfirmed, preparedRecovered, preparedDeaths]
   const countries = Object.keys(preparedConfirmed)

@@ -18,13 +18,13 @@ function HomePage() {
         <HeaderText></HeaderText>
       </Box>
       <Box px={'5px'} width={[1, 1, 1, 1, 4.175 / 5]}>
-        <DailyUpdate />
+        {/* <DailyUpdate /> */}
       </Box>
       <Box px={'5px'} width={[1, 1, 1 / 2]}>
         {/* <Chart type={'confirmed'}></Chart> */}
       </Box>
       <Box px={'5px'} width={[1, 1, 1 / 2]}>
-        <Table />
+        {/* <Table /> */}
       </Box>
       <Box px={'5px'} width={[1]}>
         {/* <WorldUpdate /> */}
